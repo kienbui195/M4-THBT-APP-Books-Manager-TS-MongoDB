@@ -35,7 +35,7 @@
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="keyword">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
@@ -60,7 +60,7 @@
                         <td scope="row"><%= item.title %></td>
                         <td scope="row"><%= item.author %></td>
                         <td scope="row"><%= item.publisher %></td>
-                        <td scope="row"><a href="/<%= item._id %>/delete" class="btn btn-danger">Delete</a></td>
+                        <td scope="row"><a href="/<%= item._id %>/delete" class="btn btn-danger" onclick="return confirm(`Are U Sure?`)">Delete</a></td>
                         <td scope="row"><a href="/<%= item._id %>/update" class="btn btn-primary">Update</a></td>
                     </tr>
                     <% }) %>

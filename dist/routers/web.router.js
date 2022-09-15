@@ -14,9 +14,21 @@ exports.webRouter.get('/create', (req, res) => {
     bookController.showFormCreate(req, res);
 });
 exports.webRouter.post('/create', upload.none(), (req, res) => {
-    bookController.getDataCreate(req, res).catch(err => console.log(err.message));
+    bookController.getDataCreate(req, res).catch(err => res.render('error'));
 });
 exports.webRouter.get('/', (req, res) => {
-    bookController.showFormHome(req, res).catch(err => console.log(err.message));
+    bookController.showFormHome(req, res).catch(err => res.render('error'));
+});
+exports.webRouter.get('/:id/update', (req, res) => {
+    bookController.showFormUpdate(req, res).catch(err => res.render('error'));
+});
+exports.webRouter.post('/', upload.none(), (req, res) => {
+    bookController.getDataSearch(req, res).catch(err => res.render('error'));
+});
+exports.webRouter.post('/update', upload.none(), (req, res) => {
+    bookController.getDataUpdate(req, res).catch(err => res.render('error'));
+});
+exports.webRouter.get('/:id/delete', (req, res) => {
+    bookController.deleteBook(req, res).catch(err => res.render('error'));
 });
 //# sourceMappingURL=web.router.js.map

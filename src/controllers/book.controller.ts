@@ -29,7 +29,32 @@ class BookController {
         res.render('home', { data: data });
     }
 
+    async showFormUpdate(req:Request, res: Response) {
+        let data = await Book.findOne({ _id: req.params.id });
+        res.render('update', { data: data });
+    }
     
+    async getDataUpdate(req: Request, res: Response) {
+        await Book.findOneAndUpdate({ _id: req.body._id }, {
+            type: req.body.type,
+            title: req.body.title,
+            author: req.body.author,
+            publisher: req.body.publisher
+        });
+        res.redirect('/');
+    }
+
+    async getDataSearch(req: Request, res: Response) {
+        let data = await Book.find({ name: new RegExp(`${req.body.keyword}`) });
+        if (data.length > 0) {
+            res.render('home', { data: data });
+        } else res.render('search');
+    }
+
+    async deleteBook(req: Request, res: Response) {
+        await Book.findOneAndRemove({ _id: req.params._id });
+        res.redirect('/');
+    }
 }
 
 export default BookController;
