@@ -29,7 +29,7 @@ class BookController {
         res.render('update', { data: data });
     }
     async getDataUpdate(req, res) {
-        await book_model_1.Book.findOneAndUpdate({ _id: req.body._id }, {
+        await book_model_1.Book.findOneAndUpdate({ _id: req.body.id }, {
             type: req.body.type,
             title: req.body.title,
             author: req.body.author,
@@ -46,7 +46,7 @@ class BookController {
             res.render('search');
     }
     async deleteBook(req, res) {
-        await book_model_1.Book.findOneAndRemove({ _id: req.params._id });
+        await book_model_1.Book.findOneAndDelete({ _id: req.params.id });
         res.redirect('/');
     }
 }

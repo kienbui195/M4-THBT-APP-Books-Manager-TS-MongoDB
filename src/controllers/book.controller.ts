@@ -30,12 +30,12 @@ class BookController {
     }
 
     async showFormUpdate(req:Request, res: Response) {
-        let data = await Book.findOne({ _id: req.params.id });
+        let data = await Book.findOne({ _id: req.params.id });   
         res.render('update', { data: data });
     }
     
     async getDataUpdate(req: Request, res: Response) {
-        await Book.findOneAndUpdate({ _id: req.body._id }, {
+        await Book.findOneAndUpdate({ _id: req.body.id }, {
             type: req.body.type,
             title: req.body.title,
             author: req.body.author,
@@ -52,7 +52,7 @@ class BookController {
     }
 
     async deleteBook(req: Request, res: Response) {
-        await Book.findOneAndRemove({ _id: req.params._id });
+        await Book.findOneAndDelete({ _id: req.params.id });
         res.redirect('/');
     }
 }
