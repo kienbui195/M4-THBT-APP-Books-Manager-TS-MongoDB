@@ -1,15 +1,16 @@
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
-import {webRouter} from "./routers/web.router";
 import mongoose from "mongoose";
+import {webRouter} from "./src/routers/web.router";
+
 
 const app = express();
 const port = 8080;
 const DB_URL = "mongodb://localhost:27017"
 
+app.set('views','./src/views');
 app.set('view engine','ejs');
-app.set('views',path.join(__dirname,'views'));
 app.use(bodyParser.json());
 app.use('/', webRouter);
 
